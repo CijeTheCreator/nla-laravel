@@ -1,29 +1,32 @@
 <section class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-serif text-[#6ba439] mb-12">Journal Archive</h1>
+    <h1 class="text-4xl font-serif text-[#6ba439] mb-12">Journal Articles</h1>
 
-    @if ($volumes->isEmpty())
+    @if ($articles->isEmpty())
         <div class="text-center py-12">
             <p class="text-xl text-gray-600 mb-4">
-                No volumes available at this time
+                No articles available at this time
             </p>
             <p class="text-gray-500">
-                Please check back later for new journal volumes.
+                Please check back later for new journal articles.
             </p>
         </div>
     @else
         <div class="space-y-6">
-            @foreach ($volumes as $volume)
+            @foreach ($articles as $article)
                 <a
-                    href="{{ url("/archive/001/" . $volume["_id"]) }}"
+                    href="{{ url("/archive/" . $volume["id"] . "/" . $article["id"]) }}"
                     class="block p-6 border border-gray-200 rounded-lg hover:shadow-lg hover:border-[#6ba439] transition-all"
                 >
                     <div class="flex items-center justify-between">
                         <div>
                             <h2 class="text-2xl font-serif text-[#6ba439] mb-2">
-                                {{ $volume["name"] }} - {{ $volume["date"] }}
+                                {{ $article["name"] }}
                             </h2>
                             <p class="text-gray-600">
-                                {{ $volume["articleCount"] }} articles
+                                {{ implode(", ", $article["authors"]) }}
+                            </p>
+                            <p class="text-gray-600">
+                                Pages {{ $article["pages"] }}
                             </p>
                         </div>
                         <svg

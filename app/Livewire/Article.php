@@ -2,28 +2,23 @@
 
 namespace App\Livewire;
 
+use App\Models\Article as AppArticle;
 use Livewire\Component;
 
 class Article extends Component
 {
-    public $volumeId = 001;
+    public AppArticle $article;
 
-    public $article = [];
-
-    public function mount()
+    public function mount($articleId)
     {
-        $this->article = (object) [
-            'name' => 'The unbecoming',
-            'authors' => ['John', 'Doe'],
-            'publishDate' => '2025',
-            'pdfUrl' => 'https://google.com',
-            'views' => '2',
-            'downloads' => '2',
-        ];
+        $this->article = AppArticle::query()->where('id', $articleId)->first();
     }
 
     public function render()
     {
-        return view('livewire.article');
+        return view('livewire.article', [
+            'article' => $this->article,
+            'volumeId' => $this->article->volume()->value('id'),
+        ]);
     }
 }

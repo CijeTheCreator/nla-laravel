@@ -12,7 +12,10 @@
 
         {{-- Desktop Navigation --}}
         <nav class="hidden md:flex items-center gap-8">
-            <a href="#" class="text-sm text-foreground hover:text-[#6ba439]">
+            <a
+                href="{{ url("/archive/" . $currentVolume["id"]) }}"
+                class="text-sm text-foreground hover:text-[#6ba439]"
+            >
                 Current
             </a>
             <a
@@ -39,6 +42,25 @@
             >
                 Contact
             </a>
+
+            @if (auth()->check())
+                <form method="POST" action="/logout">
+                    @csrf
+                    <button
+                        type="submit"
+                        class="text-sm text-foreground hover:text-[#6ba439]"
+                    >
+                        Log Out
+                    </button>
+                </form>
+            @else
+                <a
+                    href="/login"
+                    class="text-sm text-foreground hover:text-[#6ba439]"
+                >
+                    Sign in as Admin
+                </a>
+            @endif
         </nav>
 
         {{-- Mobile Menu Button --}}

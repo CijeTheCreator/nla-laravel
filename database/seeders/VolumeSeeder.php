@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Volume;
 use Illuminate\Database\Seeder;
 
 class VolumeSeeder extends Seeder
@@ -12,6 +12,10 @@ class VolumeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Volume::query()->create([
+            'name' => 'Vol 2',
+            'date' => '2027',
+            'isCurrent' => true,
+        ]);
     }
 }

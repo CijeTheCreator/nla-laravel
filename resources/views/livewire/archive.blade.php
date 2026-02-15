@@ -14,7 +14,7 @@
         <div class="space-y-6">
             @foreach ($volumes as $volume)
                 <a
-                    href="{{ url("/archive/" . $volume["_id"]) }}"
+                    href="{{ url("/archive/" . $volume["id"]) }}"
                     class="block p-6 border border-gray-200 rounded-lg hover:shadow-lg hover:border-[#6ba439] transition-all"
                 >
                     <div class="flex items-center justify-between">
@@ -23,7 +23,7 @@
                                 {{ $volume["name"] }} - {{ $volume["date"] }}
                             </h2>
                             <p class="text-gray-600">
-                                {{ $volume["articleCount"] }} articles
+                                {{ count($volume["articles"]) }} article(s)
                             </p>
                         </div>
                         <svg

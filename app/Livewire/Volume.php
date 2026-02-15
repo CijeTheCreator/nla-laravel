@@ -2,26 +2,22 @@
 
 namespace App\Livewire;
 
+use App\Models\Volume as AppVolume;
 use Livewire\Component;
 
 class Volume extends Component
 {
-    public $volumeId;
+    public AppVolume $volume;
 
-    public $volumes = [[
-        '_id' => '001',
-        'name' => 'Volume 1',
-        'articleCount' => '2',
-        'date' => '2027',
-    ], ];
-
-    public function mount()
+    public function mount(string $volumeId)
     {
-        $this->volumes = collect($this->volumes);
+        $this->volume = AppVolume::with('articles')->findOrFail($volumeId);
     }
 
     public function render()
     {
-        return view('livewire.volume');
+        return view('livewire.volume', [
+            'articles' => $this->volume->articles()->orderBy('pages', 'desc')->get(),
+        ]);
     }
 }
