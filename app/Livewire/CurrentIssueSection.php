@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class CurrentIssueSection extends Component
 {
-    public Volume $currentIssue;
+    public ?Volume $currentIssue;
 
     public function mount()
     {
