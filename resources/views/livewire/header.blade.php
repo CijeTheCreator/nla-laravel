@@ -12,12 +12,15 @@
 
         {{-- Desktop Navigation --}}
         <nav class="hidden md:flex items-center gap-8">
-            <a
-                href="{{ url("/archive/" . $currentVolume["id"]) }}"
-                class="text-sm text-foreground hover:text-[#6ba439]"
-            >
-                Current
-            </a>
+            @if ($currentVolume)
+                <a
+                    href="{{ url("/archive/" . $currentVolume["id"]) }}"
+                    class="text-sm text-foreground hover:text-[#6ba439]"
+                >
+                    Current
+                </a>
+            @endif
+
             <a
                 href="/archive"
                 class="text-sm text-foreground hover:text-[#6ba439]"

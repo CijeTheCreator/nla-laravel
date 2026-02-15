@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Header extends Component
 {
-    public Volume $currentVolume;
+    public ?Volume $currentVolume;
 
     public function mount()
     {

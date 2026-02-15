@@ -1,8 +1,12 @@
 <section class="container mx-auto px-4 py-12">
     <div class="flex items-center justify-between mb-8">
         <h3 class="text-3xl font-normal text-[#6ba439]">
-            Current Issue: {{ $currentIssue["name"] }} -
-            {{ $currentIssue["date"] }}
+            @if (! $currentIssue["articles"] || count($currentIssue["articles"]) === 0)
+                No Issues yet
+            @else
+                Current Issue: {{ $currentIssue["name"] }} -
+                {{ $currentIssue["date"] }}
+            @endif
         </h3>
         <a
             href="{{ url("/archive/" . $currentIssue["id"]) }}"
