@@ -36,7 +36,7 @@
         </div>
     @else
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @forelse ($articles as $article)
+            @forelse ($currentIssue["articles"] as $article)
                 <div
                     class="hover:shadow-lg transition-shadow border rounded-lg p-6"
                 >
