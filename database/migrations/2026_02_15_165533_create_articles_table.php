@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('volumes', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('volume_id')->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('date');
-            $table->boolean('isCurrent');
+            $table->string('pages');
+            $table->json('authors');
+            $table->unsignedInteger('views')->default(0);
+            $table->unsignedInteger('downloads')->default(0);
+            $table->string('publishDate');
+            $table->string('pdfUrl');
         });
     }
 
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('volumes');
+        Schema::dropIfExists('articles');
     }
 };
