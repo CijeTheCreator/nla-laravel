@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
         /*     'password' => Hash::make('password'), */
         /* ]); */
 
-        /* $this->call([ */
-        /*     VolumeSeeder::class, */
-        /*     ArticleSeeder::class, */
-        /* ]); */
+        $this->call([
+            VolumeSeeder::class,
+            ArticleSeeder::class,
+        ]);
     }
 }

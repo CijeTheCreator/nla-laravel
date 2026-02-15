@@ -1,5 +1,15 @@
 <section class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-serif text-[#6ba439] mb-12">Journal Archive</h1>
+    <div class="flex items-center justify-between mb-12">
+        <h1 class="text-4xl font-serif text-[#6ba439]">Journal Archive</h1>
+        @if (auth()->check())
+            <a
+                href="{{ url("admin/archive/create") }}"
+                class="px-4 py-2 bg-[#6ba439] text-white rounded-lg hover:bg-[#5a9030] transition-colors"
+            >
+                + New Volume
+            </a>
+        @endif
+    </div>
 
     @if ($volumes->isEmpty())
         <div class="text-center py-12">
@@ -13,11 +23,13 @@
     @else
         <div class="space-y-6">
             @foreach ($volumes as $volume)
-                <a
-                    href="{{ url("/archive/" . $volume["id"]) }}"
+                <div
                     class="block p-6 border border-gray-200 rounded-lg hover:shadow-lg hover:border-[#6ba439] transition-all"
                 >
-                    <div class="flex items-center justify-between">
+                    <a
+                        href="{{ url("/archive/" . $volume["id"]) }}"
+                        class="flex items-center justify-between"
+                    >
                         <div>
                             <h2 class="text-2xl font-serif text-[#6ba439] mb-2">
                                 {{ $volume["name"] }} - {{ $volume["date"] }}
@@ -39,8 +51,44 @@
                                 d="M9 5l7 7-7 7"
                             />
                         </svg>
-                    </div>
-                </a>
+                    </a>
+
+                    @if (auth()->check())
+                        <div
+                            class="mt-4 pt-4 border-t border-gray-100 space-y-2"
+                        >
+                            <div class="flex items-center justify-end text-sm">
+                                <div class="flex gap-3">
+                                    <a
+                                        href="{{ url("/admin/archive/" . $volume["id"] . "/edit") }}"
+                                        class="text-blue-500 hover:text-blue-700 transition-colors"
+                                    >
+                                        Edit
+                                    </a>
+                                    <form
+                                        action="{{ url("/admin/archive/" . $volume["id"] . "/delete") }}"
+                                        method="POST"
+                                        onsubmit="
+                                            return confirm(
+                                                'Delete this article?',
+                                            );
+                                        "
+                                        class="inline"
+                                    >
+                                        @csrf
+                                        @method("DELETE")
+                                        <button
+                                            type="submit"
+                                            class="text-red-500 hover:text-red-700 transition-colors"
+                                        >
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
             @endforeach
         </div>
     @endif
