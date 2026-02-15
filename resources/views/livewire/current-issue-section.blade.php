@@ -1,35 +1,35 @@
 <section class="container mx-auto px-4 py-12">
-    <div class="flex items-center justify-between mb-8">
-        <h3 class="text-3xl font-normal text-[#6ba439]">
-            @if (! $currentIssue["articles"] || count($currentIssue["articles"]) === 0)
-                No Issues yet
-            @else
+    @if (! $currentIssue)
+        No Issues yet
+    @else
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="text-3xl font-normal text-[#6ba439]">
                 Current Issue: {{ $currentIssue["name"] }} -
                 {{ $currentIssue["date"] }}
-            @endif
-        </h3>
-        <a
-            href="{{ url("/archive/" . $currentIssue["id"]) }}"
-            class="flex items-center gap-2 text-[#6ba439] hover:text-[#5a8a2f] font-medium"
-        >
-            View Articles
-            <svg
-                class="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            </h3>
+            <a
+                href="{{ url("/archive/" . $currentIssue["id"]) }}"
+                class="flex items-center gap-2 text-[#6ba439] hover:text-[#5a8a2f] font-medium"
             >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                />
-            </svg>
-        </a>
-    </div>
+                View Articles
+                <svg
+                    class="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                    />
+                </svg>
+            </a>
+        </div>
+    @endif
 
-    @if (! $currentIssue["articles"] || count($currentIssue["articles"]) === 0)
+    @if (! $currentIssue)
         <div class="text-center py-12">
             <p class="text-xl text-gray-600 mb-4">
                 No articles available in the current issue
