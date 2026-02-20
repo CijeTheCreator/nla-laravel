@@ -1,5 +1,5 @@
 <section class="container mx-auto px-4 py-12">
-    @if (! $currentIssue)
+    @if (! $volume)
         No Issues yet
     @else
         <div class="flex items-center justify-between mb-8">
@@ -8,7 +8,7 @@
                 {{ $currentIssue["date"] }}
             </h3>
             <a
-                href="{{ url("/archive/" . $currentIssue["id"]) }}"
+                href="{{ route("archive.volume", $currentIssue) }}"
                 class="flex items-center gap-2 text-[#6ba439] hover:text-[#5a8a2f] font-medium"
             >
                 View Articles
@@ -29,7 +29,7 @@
         </div>
     @endif
 
-    @if (! $currentIssue)
+    @if (! $volume)
         <div class="text-center py-12">
             <p class="text-xl text-gray-600 mb-4">
                 No articles available in the current issue
@@ -57,7 +57,7 @@
                             Pages {{ $article["pages"] }}
                         </span>
                         <a
-                            href="{{ url("/archive/" . $currentIssue["id"] . "/" . $article["id"]) }}"
+                            href="{{ route("archive.article", ["volumeId" => $currentIssue["id"], "articleId" => $article["id"]]) }}"
                         >
                             <span
                                 class="text-[#6ba439] hover:text-[#5a8a2f] p-0 inline-flex items-center"

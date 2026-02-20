@@ -23,7 +23,7 @@
                         A Journal of Nigeria Library Association Enugu State
                         Chapter
                     </p>
-                    <a href="{{ url("/archive") }}">
+                    <a href="{{ route("archive.index") }}">
                         <button
                             class="bg-[#6ba439] hover:bg-[#5a8a2f] text-white px-8 py-6 text-base lg:text-lg flex items-center"
                         >

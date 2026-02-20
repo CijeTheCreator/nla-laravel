@@ -16,8 +16,9 @@ class CurrentIssueSection extends Component
 
     public function render()
     {
+
         return view('livewire.current-issue-section', [
-            'currentIssue' => $this->currentIssue,
+            'volume' => $this->currentIssue,
         ]);
     }
 }

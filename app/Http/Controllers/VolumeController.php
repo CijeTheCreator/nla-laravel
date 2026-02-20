@@ -39,7 +39,7 @@ class VolumeController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'date' => 'required|date',
-            'isCurrent' => 'boolean',
+            'isCurrent' => 'required|boolean',
         ]);
 
         $validated['isCurrent'] = $request->boolean('isCurrent');
@@ -78,13 +78,13 @@ class VolumeController extends Controller
         if (! auth()->guard()->check()) {
             abort(403, 'Unauthorized');
         }
-        // Validate
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'date' => 'required|date',
+            'isCurrent' => 'required|boolean',
         ]);
 
-        // Update
-        $volume->update($validated);
+        $validated['isCurrent'] = $request->boolean('isCurrent');
 
         return redirect('/archive')->with('success', 'Volume updated!');
     }

@@ -9,7 +9,7 @@
             </h1>
 
             <div class="border border-gray-200 rounded-lg p-8">
-                <form method="POST" action="/login">
+                <form method="POST" action="{{ route("login.attempt") }}">
                     @csrf
 
                     <!-- Email -->

@@ -6,7 +6,7 @@
         <div class="max-w-lg border border-gray-200 rounded-lg p-8">
             <form
                 method="POST"
-                action="/admin/archive/{{ $volume["id"] }}/edit"
+                action="{{ route("admin.archive.update", $volume) }}"
             >
                 @csrf
                 @method("PUT")
@@ -50,11 +50,13 @@
                 <!-- Is Current -->
                 <div class="mb-8">
                     <div class="flex items-center">
+                        <!-- Hidden field ensures a value is always sent -->
+                        <input type="hidden" name="isCurrent" value="0" />
                         <input
                             type="checkbox"
                             id="isCurrent"
                             name="isCurrent"
-                            class="w-4 h-4 accent-[#6ba439] cursor-pointer"
+                            value="1"
                             {{ old("isCurrent", $volume->isCurrent) ? "checked" : "" }}
                         />
                         <label
@@ -78,7 +80,7 @@
                         Save Changes
                     </button>
                     <a
-                        href="{{ url("archive/" . $volume["id"]) }}"
+                        href="{{ route("archive.volume", $volume) }}"
                         class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
                     >
                         Cancel

@@ -46,7 +46,7 @@
                 Contact
             </a>
 
-            @if (auth()->check())
+            @auth
                 <form method="POST" action="/logout">
                     @csrf
                     <button
@@ -56,14 +56,16 @@
                         Log Out
                     </button>
                 </form>
-            @else
+            @endauth
+
+            @guest
                 <a
                     href="/login"
                     class="text-sm text-foreground hover:text-[#6ba439]"
                 >
                     Sign in as Admin
                 </a>
-            @endif
+            @endguest
         </nav>
 
         {{-- Mobile Menu Button --}}

@@ -5,7 +5,7 @@
 
         <form
             method="POST"
-            action="/admin/article/{{ $article["id"] }}/edit"
+            action="{{ route("admin.article.update", $article) }}"
             class="max-w-2xl space-y-8"
         >
             @csrf
@@ -173,7 +173,7 @@
                     Save Changes
                 </button>
                 <a
-                    href="{{ url("archive/" . $article["volume_id"] . "/" . $article["id"]) }}"
+                    href="{{ route("archive.article", ["volumeId" => $article->volume_id, "articleId" => $article->id]) }}"
                     class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
                 >
                     Cancel

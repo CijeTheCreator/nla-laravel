@@ -1,6 +1,6 @@
 <section class="container mx-auto px-4 py-12">
     <a
-        href="{{ url("/") }}"
+        href="{{ route("home") }}"
         class="flex items-center gap-2 text-[#6ba439] hover:text-[#5a8a2f] mb-8"
     >
         <svg
@@ -67,7 +67,7 @@
             <ul class="list-disc list-inside space-y-2">
                 <li>
                     <a
-                        href="{{ url("/note-to-authors") }}"
+                        href="{{ route("notes.authors") }}"
                         class="text-[#6ba439] hover:underline"
                     >
                         Note to Authors
@@ -75,7 +75,7 @@
                 </li>
                 <li>
                     <a
-                        href="{{ url("/archive") }}"
+                        href="{{ route("archive.index") }}"
                         class="text-[#6ba439] hover:underline"
                     >
                         Journal Archive
@@ -83,7 +83,7 @@
                 </li>
                 <li>
                     <a
-                        href="{{ url("/editorial-team") }}"
+                        href="{{ route("editorial.team") }}"
                         class="text-[#6ba439] hover:underline"
                     >
                         Editorial Team

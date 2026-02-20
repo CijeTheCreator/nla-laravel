@@ -18,7 +18,7 @@ class Article extends Component
     {
         return view('livewire.article', [
             'article' => $this->article,
-            'volumeId' => $this->article->volume()->value('id'),
+            'volume' => $this->article->volume()->value('id'),
         ]);
     }
 }

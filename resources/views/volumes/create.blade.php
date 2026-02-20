@@ -4,7 +4,7 @@
         <h1 class="text-4xl font-serif text-[#6ba439] mb-8">Create Volume</h1>
 
         <div class="max-w-lg border border-gray-200 rounded-lg p-8">
-            <form method="POST" action="/admin/archive/create">
+            <form method="POST" action="{{ route("admin.archive.store") }}">
                 @csrf
 
                 <!-- Name -->
@@ -46,12 +46,13 @@
                 <!-- Is Current -->
                 <div class="mb-8">
                     <div class="flex items-center">
+                        <input type="hidden" name="isCurrent" value="0" />
                         <input
                             type="checkbox"
                             id="isCurrent"
                             name="isCurrent"
-                            class="w-4 h-4 accent-[#6ba439] cursor-pointer"
-                            {{ old("isCurrent") ? "checked" : "" }}
+                            value="1"
+                            {{ old("isCurrent", $volume->isCurrent) ? "checked" : "" }}
                         />
                         <label
                             for="isCurrent"
@@ -74,7 +75,7 @@
                         Create Volume
                     </button>
                     <a
-                        href="{{ "/archive" }}"
+                        href="{{ route("archive.index") }}"
                         class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
                     >
                         Cancel

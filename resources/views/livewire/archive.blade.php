@@ -1,14 +1,14 @@
 <section class="container mx-auto px-4 py-12">
     <div class="flex items-center justify-between mb-12">
         <h1 class="text-4xl font-serif text-[#6ba439]">Journal Archive</h1>
-        @if (auth()->check())
+        @auth
             <a
-                href="{{ url("admin/archive/create") }}"
+                href="{{ route("admin.archive.create") }}"
                 class="px-4 py-2 bg-[#6ba439] text-white rounded-lg hover:bg-[#5a9030] transition-colors"
             >
                 + New Volume
             </a>
-        @endif
+        @endauth
     </div>
 
     @if ($volumes->isEmpty())
@@ -27,7 +27,7 @@
                     class="block p-6 border border-gray-200 rounded-lg hover:shadow-lg hover:border-[#6ba439] transition-all"
                 >
                     <a
-                        href="{{ url("/archive/" . $volume["id"]) }}"
+                        href="{{ route("archive.volume", $volume) }}"
                         class="flex items-center justify-between"
                     >
                         <div>
@@ -53,14 +53,14 @@
                         </svg>
                     </a>
 
-                    @if (auth()->check())
+                    @auth
                         <div
                             class="mt-4 pt-4 border-t border-gray-100 space-y-2"
                         >
                             <div class="flex items-center justify-end text-sm">
                                 <div class="flex gap-3">
                                     <a
-                                        href="{{ url("/admin/archive/" . $volume["id"] . "/edit") }}"
+                                        href="{{ route("admin.archive.edit", $volume) }}"
                                         class="text-blue-500 hover:text-blue-700 transition-colors"
                                     >
                                         Edit
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    @endauth
                 </div>
             @endforeach
         </div>

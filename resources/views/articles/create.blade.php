@@ -5,7 +5,7 @@
 
         <form
             method="POST"
-            action="/admin/article/create"
+            action="{{ route("admin.article.store") }}"
             class="max-w-2xl space-y-8"
         >
             @csrf

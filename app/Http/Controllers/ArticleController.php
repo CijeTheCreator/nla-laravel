@@ -21,9 +21,6 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        if (! auth()->guard()->check()) {
-            abort(403, 'Unauthorized');
-        }
 
         $volumes = Volume::all();
 

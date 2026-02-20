@@ -1,6 +1,6 @@
 <section class="container mx-auto px-4 py-12">
     <a
-        href="{{ url("/archive/" . $volumeId) }}"
+        href="{{ route("archive.volume", $volume) }}"
         class="flex items-center gap-2 text-[#6ba439] hover:text-[#5a8a2f] mb-8"
     >
         {{-- Arrow Left Icon --}}

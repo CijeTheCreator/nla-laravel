@@ -1,14 +1,14 @@
 <section class="container mx-auto px-4 py-12">
     <div class="flex items-center justify-between mb-12">
         <h1 class="text-4xl font-serif text-[#6ba439]">Journal Articles</h1>
-        @if (auth()->check())
+        @auth
             <a
                 href="{{ url("admin/article/create") }}"
                 class="px-4 py-2 bg-[#6ba439] text-white rounded-lg hover:bg-[#5a9030] transition-colors"
             >
                 + New Article
             </a>
-        @endif
+        @endauth
     </div>
 
     @if ($articles->isEmpty())
@@ -60,7 +60,7 @@
                         </div>
                     </a>
 
-                    @if (auth()->check())
+                    @auth
                         <div
                             class="flex gap-3 mt-4 pt-4 border-t border-gray-100 items-center justify-end"
                         >
@@ -88,7 +88,7 @@
                                 </button>
                             </form>
                         </div>
-                    @endif
+                    @endauth
                 </div>
             @endforeach
         </div>
