@@ -23,17 +23,23 @@ Route::get('/editorial-team', EditorialTeam::class);
 Route::get('/contact', Contact::class);
 Route::get('/note-to-authors', NotesToAuthors::class);
 
-Route::get('/admin/archive/{volume}/edit', [VolumeController::class, 'edit']);
-Route::get('/admin/archive/create', [VolumeController::class, 'create']);
-Route::post('/admin/archive/create', [VolumeController::class, 'store']);
-Route::put('/admin/archive/{volume}/edit', [VolumeController::class, 'update']);
-Route::delete('/admin/archive/{volume}/delete', [VolumeController::class, 'destroy']);
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::prefix('archive')->group(function () {
+        Route::get('/create', [VolumeController::class, 'create']);
+        Route::post('/create', [VolumeController::class, 'store']);
+        Route::get('/{volume}/edit', [VolumeController::class, 'edit']);
+        Route::put('/{volume}/edit', [VolumeController::class, 'update']);
+        Route::delete('/{volume}/delete', [VolumeController::class, 'destroy']);
+    });
 
-Route::get('/admin/article/{article}/edit', [ArticleController::class, 'edit']);
-Route::get('/admin/article/create', [ArticleController::class, 'create']);
-Route::post('/admin/article/create', [ArticleController::class, 'store']);
-Route::put('/admin/article/{article}/edit', [ArticleController::class, 'update']);
-Route::delete('/admin/article/{article}/delete', [ArticleController::class, 'destroy']);
+    Route::prefix('article')->group(function () {
+        Route::get('/create', [ArticleController::class, 'create']);
+        Route::post('/create', [ArticleController::class, 'store']);
+        Route::get('/{article}/edit', [ArticleController::class, 'edit']);
+        Route::put('/{article}/edit', [ArticleController::class, 'update']);
+        Route::delete('/{article}/delete', [ArticleController::class, 'destroy']);
+    });
+});
 
 Route::view('/login', 'login')
     ->name('login');
